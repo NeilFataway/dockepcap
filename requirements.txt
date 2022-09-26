@@ -1,0 +1,6 @@
+# -e .
+
+Flask
+netns
+docker
+psutil
