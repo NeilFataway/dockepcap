@@ -9,7 +9,7 @@ COPY dockerpcap /dockerpcap
 WORKDIR /dockerpcap
 
 RUN apk update && apk add --no-cache --virtual .build-deps gcc libc-dev linux-headers && \
-    mkdir ~/.pip && echo -e"[global]\nindex-url=${PYPI_INDEX}\ntrusted-host=${PYPI_HOST}\n" > ~/.pip/pip.conf && \
+    mkdir ~/.pip && echo -e "[global]\nindex-url=${PYPI_INDEX}\ntrusted-host=${PYPI_HOST}\n" > ~/.pip/pip.conf && \
     echo -e "[easy_install]\nindex_url=${PYPY_INDEX}\n" > ~/.pydistutils.cfg && \
     python setup.py install && \
     runDeps="$(scanelf --needed --nobanner --recursive /usr/local | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' | \

@@ -40,5 +40,7 @@ def parse_size(inputs):
 EXPIRED_DURATION = parse_duration(os.environ.get("EXPIRED_DURATION", "2d"))
 MAX_DUMP_DURATION = parse_duration(os.environ.get("MAX_DUMP_DURATION", "1h"))
 MAX_DUMP_SIZE = parse_size(os.environ.get("MAX_DUMP_SIZE", "1g"))
-BASE_WORK_DIR = parse_duration(os.environ.get("BASE_WORK_DIR", "/data"))
-BUFF_SIZE = 1024
+BASE_WORK_DIR = os.environ.get("BASE_WORK_DIR", "/data")
+BUFF_SIZE = int(os.environ.get("BUFF_SIZE", "1024"))
+HTTP_PORT = int(os.environ.get("HTTP_PORT", "8080"))
+CRON_INTERVAL = parse_duration(os.environ.get("CRON_INTERVAL", "5s"))

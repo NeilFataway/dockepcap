@@ -11,8 +11,11 @@ class DPcapException(Exception):
     """
     code = None
 
-    def __init__(self, message, code=None):
-        Exception.__init__(self, message)
+    def __init__(self, message=None, code=None):
+        if message:
+            Exception.__init__(self, message)
+        else:
+            Exception.__init__(self)
         if code is not None:
             self.code = code
         elif not self.code:
@@ -43,21 +46,25 @@ class DPcapException(Exception):
 class ContainerNotFoundError(DPcapException):
     """Container Not Found"""
     code = 404
+    message = "container not found"
 
 
 class DumpNotFoundError(DPcapException):
     """Dump Not Found"""
     code = 404
+    message = "dump not found"
 
 
 class InvalidUsage(DPcapException):
     """前端传入参数异常"""
     code = 400
+    message = "invalid usage"
 
 
 class ResourceLocked(DPcapException):
     """resource locked"""
     code = 423
+    message = "resource locked"
 
 
 def unknownhandler(err):

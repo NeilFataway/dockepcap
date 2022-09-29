@@ -6,15 +6,15 @@ import argparse
 
 parser = argparse.ArgumentParser(description="Dump tool to capture all network traffic in specified namespace.")
 parser.add_argument("-f", dest="filter", help="the filter shall be used to tshark")
-parser.add_argument("--max-duration", help="the max duration shall be limited with tshark")
-parser.add_argument("--max-filesize", help="the max filesize shall be limited with tshark")
+parser.add_argument("--max-duration", type=int, help="the max duration shall be limited with tshark")
+parser.add_argument("--max-filesize", type=int, help="the max filesize shall be limited with tshark")
 parser.add_argument("work_dir")
 parser.add_argument("ns_path")
 
 
 def ddump():
     args = parser.parse_args()
-    with netns.NetNS(nspath=args.ns_file):
+    with netns.NetNS(nspath=args.ns_path):
         if args.filter:
             os.execvp("tshark", ("tshark",
                                  "-a", "duration:%d" % args.max_duration,

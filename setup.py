@@ -9,8 +9,8 @@ install_requires = [
 
 entry_points = {
     "console_scripts": [
-        "ddump:dockerpcap.ddumps:ddump",
-        "ddump-server:dockerpcap.main:"
+        "ddump=dockerpcap.ddumps:ddump",
+        "ddump-server=dockerpcap.main:main"
     ]
 }
 
